@@ -21,7 +21,7 @@ const Start = ({ navigation }) => {
          />
          <Button
         title="Go to Chat"
-        onPress={() => navigation.navigate('Chat', {name: name}, {selectedColor: selectedColor} )}
+        onPress={() => navigation.navigate('Chat', {name: name, background: selectedColor} )}
       />
      </View>
      <Text style={styles.text}>Choose Background Color:</Text>
