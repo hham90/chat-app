@@ -2,15 +2,18 @@ import { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { getAuth, signInAnonymously } from "firebase/auth";
 
+
 const Start = ({ navigation }) => {
-  const [name, setName] = useState('');
   const auth = getAuth();
+  const [name, setName] = useState('');
+
   const [selectedColor, setSelectedColor] = useState('');
 
   const signInUser = () => {
     signInAnonymously(auth)
     .then(result => {
-      navigation.navigate('Chat', { name: name, background: background, id: result.user.uid });
+      navigation.navigate('Chat', { name: name, background: selectedColor, id: result.user.uid });
+      // background: background,
         Alert.alert("Signed in Successfully!");
       })
       .catch((error) => {
@@ -29,7 +32,7 @@ const Start = ({ navigation }) => {
         <TextInput
          style={styles.textInput}
          value={name}
-          onChangeText={setName}
+         onChangeText={setName}
          placeholder='Type your username here'
          />
          <Button
